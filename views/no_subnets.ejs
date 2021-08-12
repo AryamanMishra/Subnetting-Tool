@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Subnets</title>
+</head>
+<body>
+    <h2 style="text-align: center;">No subnets can be made of the specified network</h2>
+    <h2 >Entered CIDR Range : <%= CIDR_range %> </h2>
+    <h2>Other details --&gt;</h2>
+    <h3>Subnet mask of the network specified : <%= subnet_mask[0] %> </h3>
+    <h3>Number of hosts in the network specified : <%= Number_of_hosts %> </h3>
+    <h3>Network ID(Start IP) of the network specified : <%= network_id_of_CIDR %> </h3>
+    <h3>Broadcast ID(Last IP) of the network specified : <%= broadcast_id %> </h3>
+</body>
+</html>

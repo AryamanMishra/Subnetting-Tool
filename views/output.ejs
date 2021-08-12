@@ -12,12 +12,9 @@
     </style>
 </head>
 <body>
-    <h3>Entered CIDR Range : <%= CIDR_range %> </h3>
-    <br>
-    <h3>Subnet mask of the network specified : <%= subnet_mask %> </h3>
-    <br>
-    <h3><%= number_of_subnets %> subnets of the given network can be:  </h3>
-    <br>
+    <h2 style="text-align: center;">Entered CIDR Range : <%= CIDR_range %> </h2>
+    <h3><%= number_of_subnets %> possible subnets of the given network are:  </h3>
+    <br> 
     <table>
         <tr>
             <th>S.No</th>
@@ -35,6 +32,44 @@
                 <td><%=subnets_table[i][3]%></td>
             </tr>
         <% } %> 
-    </table>  
+    </table> 
+    <br>
+    <button onclick="show()">Click here to see full list of possible subnets</button>
+    <br>
+    <br>
+    <section id="full-list" style="display: none;">
+        <table>
+            <tr>
+                <th>S.No</th>
+                <th>Subnet Network ID</th>
+                <th>Subnet Mask of the subnet</th>
+                <th>Number of Hosts in the subnet</th>
+                <th>Subnet Broadcast ID</th>
+            </tr>
+            <% for (let i=0;i<Object.keys(subnets_table).length;i++) { %> 
+                <tr>
+                    <td><%= i+1 %> </td>
+                    <td><%=subnets_table[i][0]%></td>
+                    <td><%=subnets_table[i][1]%></td>
+                    <td><%=subnets_table[i][2]%></td>
+                    <td><%=subnets_table[i][3]%></td>
+                </tr>
+            <% } %> 
+        </table> 
+    </section>
+    <br>
+    <h2>Other details --&gt;</h2>
+    <h3>Subnet mask of the network specified : <%= subnet_mask[0] %> </h3>
+    <h3>Number of hosts in the network specified : <%= Number_of_hosts %> </h3>
+    <h3>Network ID(Start IP) of the network specified : <%= network_id_of_CIDR %> </h3>
 </body>
+<script>
+    function show() {
+        let list = document.getElementById('full-list');
+        if (list.style.display === "none") 
+            list.style.display = "block"; 
+        else 
+            list.style.display = "none";
+    }
+</script>
 </html>
