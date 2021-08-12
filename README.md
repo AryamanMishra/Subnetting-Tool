@@ -1,0 +1,1 @@
+A tool which gives subnet mask, network id(start ip), broadcast id(last ip), number of hosts, from a given CIDR range(group of ip with prefix notation example, (192.168.0.0/24))
