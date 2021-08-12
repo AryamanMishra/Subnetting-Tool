@@ -20,6 +20,7 @@
     <br>
     <table>
         <tr>
+            <th>S.No</th>
             <th>Subnet Network ID</th>
             <th>Subnet Mask of the subnet</th>
             <th>Number of Hosts in the subnet</th>
@@ -27,6 +28,7 @@
         </tr>
         <% for (let i=0;i<number_of_subnets;i++) { %> 
             <tr>
+                <td><%= i+1 %> </td>
                 <td><%=subnets_table[i][0]%></td>
                 <td><%=subnets_table[i][1]%></td>
                 <td><%=subnets_table[i][2]%></td>
