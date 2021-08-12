@@ -1,1 +1,3 @@
-A tool which gives subnet mask, network id(start ip), broadcast id(last ip), number of hosts, from a given CIDR range(group of ip with prefix notation example, (192.168.0.0/24))
+A tool which can divide a given network into its subnets while giving details about the network ID(start IP),
+broadcast ID(last IP), number of hosts and the subnet masks of the subnets.
+It requires 2 inputs namely, the CIDR range(network id/prefix of subnet mask of network) and the number of subnets you want to divide the network into.

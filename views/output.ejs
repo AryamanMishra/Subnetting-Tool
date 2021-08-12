@@ -5,9 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Output</title>
+    <style>
+        table, th, td {
+          border: 1.5px solid black;
+    }
+    </style>
 </head>
 <body>
-    <h3>Entered CIDR Range: <%= CIDR_range %> </h3>
-    <h3>Subnet: <%= subnet_mask %> </h3>
+    <h3>Entered CIDR Range : <%= CIDR_range %> </h3>
+    <br>
+    <h3>Subnet mask of the network specified : <%= subnet_mask %> </h3>
+    <br>
+    <h3><%= number_of_subnets %> subnets of the given network can be:  </h3>
+    <br>
+    <table>
+        <tr>
+            <th>Subnet Network ID</th>
+            <th>Subnet Mask of the subnet</th>
+            <th>Number of Hosts in the subnet</th>
+            <th>Subnet Broadcast ID</th>
+        </tr>
+        <% for (let i=0;i<number_of_subnets;i++) { %> 
+            <tr>
+                <td><%=subnets_table[i][0]%></td>
+                <td><%=subnets_table[i][1]%></td>
+                <td><%=subnets_table[i][2]%></td>
+                <td><%=subnets_table[i][3]%></td>
+            </tr>
+        <% } %> 
+    </table>  
 </body>
 </html>
