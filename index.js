@@ -16,7 +16,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(session({
     name: 'session',
     secret: process.env.SECRET || 'thisisasecret!',
-    store: MongoStore.create({mongoUrl:dbUrl}),
     resave: false,
     saveUninitialized: true,
     cookie: {
