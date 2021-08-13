@@ -217,6 +217,19 @@ function give_broadcast_id(CIDR_range,net_mask) {
     return final_ans
 }
 
+function give_range(network_id,broadcast_id) {
+    let index = -1
+    for (let i=0;i<network_id.length;i++) {
+        if (network_id.charAt(i) === '.') 
+            index = i
+    }
+    let last_number_network = parseInt(network_id.substring(index+1))
+    last_number_network += 1
+    let last_number_broadcast = parseInt(broadcast_id.substring(index+1))
+    last_number_broadcast -= 1
+    return network_id.substring(0,index+1) + last_number_network + " " + "-" + " " + broadcast_id.substring(0,index+1) + last_number_broadcast
+}
+
 app.post('/', (req,res) => {
     let CIDR_range = req.body.CIDR_range
     let subnet_mask = give_subnet_mask(CIDR_range)
@@ -224,7 +237,8 @@ app.post('/', (req,res) => {
     //let subnets_table = divide_in_subnets(CIDR_range,number_of_subnets)
     let broadcast_id = give_broadcast_id(CIDR_range,subnet_mask[0])
     let Number_of_hosts = give_number_of_hosts(subnet_mask[1])
-    res.render('output', {CIDR_range,subnet_mask,Number_of_hosts,network_id_of_CIDR,broadcast_id})
+    let range = give_range(network_id_of_CIDR,broadcast_id)
+    res.render('output', {CIDR_range,subnet_mask,Number_of_hosts,network_id_of_CIDR,broadcast_id,range})
 })
 
 
