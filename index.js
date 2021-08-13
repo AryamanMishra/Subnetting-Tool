@@ -244,16 +244,20 @@ function give_broadcast_id(CIDR_range,net_mask) {
 }
 
 function give_range(network_id,broadcast_id) {
-    let index = -1
+    let index = -1,index_broadcast = -1
     for (let i=0;i<network_id.length;i++) {
         if (network_id.charAt(i) === '.') 
             index = i
     }
+    for (let i=0;i<broadcast_id.length;i++) {
+        if (broadcast_id.charAt(i) === '.') 
+            index_broadcast = i
+    }
     let last_number_network = parseInt(network_id.substring(index+1))
     last_number_network += 1
-    let last_number_broadcast = parseInt(broadcast_id.substring(index+1))
+    let last_number_broadcast = parseInt(broadcast_id.substring(index_broadcast+1))
     last_number_broadcast -= 1
-    return network_id.substring(0,index+1) + last_number_network + " " + "-" + " " + broadcast_id.substring(0,index+1) + last_number_broadcast
+    return network_id.substring(0,index+1) + last_number_network + " " + "-" + " " + broadcast_id.substring(0,index_broadcast+1) + last_number_broadcast
 }
 
 app.post('/', (req,res) => {
