@@ -1,9 +1,32 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
+
+
 const express = require('express')
 const app = express();
 const path = require('path')
+const session = require('express-session');
 
 
 app.use(express.static(__dirname + '/public'));
+
+
+app.use(session({
+    name: 'session',
+    secret: process.env.SECRET || 'thisisasecret!',
+    store: MongoStore.create({mongoUrl:dbUrl}),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}))
+
 
 /* Set method of express to join the path to cwd */
 app.set('views',path.join(__dirname,'views'))
@@ -242,6 +265,8 @@ app.post('/', (req,res) => {
 })
 
 
-app.listen(5000, () => {
-    console.log('LISTENING');
+
+const port = process.env.PORT || 5000
+app.listen(port, () => {
+    console.log(`LISTENING ON PORT ${port}`)
 })
