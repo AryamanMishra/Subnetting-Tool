@@ -13,54 +13,12 @@
 </head>
 <body>
     <h2 style="text-align: center;">Entered CIDR Range : <%= CIDR_range %> </h2>
-    <!-- <h3><%= number_of_subnets %> possible subnets of the given network are:  </h3>
-    <br> 
-    <table>
-        <tr>
-            <th>S.No</th>
-            <th>Subnet Network ID</th>
-            <th>Subnet Mask of the subnet</th>
-            <th>Number of Hosts in the subnet</th>
-            <th>Subnet Broadcast ID</th>
-        </tr>
-        <% for (let i=0;i<number_of_subnets;i++) { %> 
-            <tr>
-                <td><%= i+1 %> </td>
-                <td><%=subnets_table[i][0]%></td>
-                <td><%=subnets_table[i][1]%></td>
-                <td><%=subnets_table[i][2]%></td>
-                <td><%=subnets_table[i][3]%></td>
-            </tr>
-        <% } %> 
-    </table>  -->
-    <br>
-    <!-- <button onclick="show()">Click here to see full list of possible subnets</button> -->
-    <!-- <section id="full-list" style="display: none;">
-        <table>
-            <tr>
-                <th>S.No</th>
-                <th>Subnet Network ID</th>
-                <th>Subnet Mask of the subnet</th>
-                <th>Number of Hosts in the subnet</th>
-                <th>Subnet Broadcast ID</th>
-            </tr>
-            <% for (let i=0;i<Object.keys(subnets_table).length;i++) { %> 
-                <tr>
-                    <td><%= i+1 %> </td>
-                    <td><%=subnets_table[i][0]%></td>
-                    <td><%=subnets_table[i][1]%></td>
-                    <td><%=subnets_table[i][2]%></td>
-                    <td><%=subnets_table[i][3]%></td>
-                </tr>
-            <% } %> 
-        </table> 
-    </section> -->
-    <br>
     <h2>Details --&gt;</h2>
     <h3>Subnet mask of the network specified : <%= subnet_mask[0] %> </h3>
     <h3>Number of hosts in the network specified : <%= Number_of_hosts %> </h3>
     <h3>Number of usable addresses(available hosts) : <%= Number_of_hosts - 2 %> </h3>
     <h3>Network ID(Start IP) of the network specified : <%= network_id_of_CIDR %> </h3>
+    <h3>Broadcast ID(Last IP) of the network specified : <%= broadcast_id %> </h3>
     
 </body>
 <script>
