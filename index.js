@@ -173,7 +173,7 @@ function give_network_id(CIDR_range,net_mask) {
     binary_net_id += dec_to_bin(net_id.substring(c))
     c = 0
     for (let i=0;i<net_mask.length;i++) {
-        if (net_id.charAt(i) === '.') {
+        if (net_mask.charAt(i) === '.') {
             binary_net_mask += dec_to_bin(net_mask.substring(c,i)) + '.'
             c = i+1;
         }
@@ -194,7 +194,7 @@ function give_network_id(CIDR_range,net_mask) {
         }
     }
     final_ans += bin_to_dec(ans.substring(c))
-    return final_ans;
+    return final_ans
 }
 function give_broadcast_id(CIDR_range,net_mask) {
     let net_id = give_network_id(CIDR_range,net_mask)
