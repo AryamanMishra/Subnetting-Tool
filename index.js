@@ -92,54 +92,6 @@ function give_subnet_mask(CIDR_range) {
     return [subnet_mask_dec,subnet_mask_bin_copy]
 }
 
-// function divide_in_subnets(CIDR_range, number_of_subnets) {
-//     let index = 0;
-//     let arr_subnets = table.Number_of_subnets
-//     for (let i=0;i<arr_subnets.length;i++) {
-//         if (arr_subnets[i] >= number_of_subnets) {
-//             index = i;
-//             break;
-//         }
-//     }
-//     const slash = CIDR_range.indexOf('/')
-//     let starting_network_id = CIDR_range.substring(0,slash)
-//     let ans = {}
-//     for (let i=0;i<32;i++) {
-//         let arr = [];
-//         if (i === 0) {
-//             arr[0] = starting_network_id
-//             arr[1] = table.Subnet_mask[index]
-//             arr[2] = parseInt(table.Number_of_hosts[index]) - 2
-//             let last_dot_string_number  = parseInt(starting_network_id.substring(10))
-//             last_dot_string_number += arr[2] + 1
-//             arr[3] = starting_network_id.substring(0,9) + "." + last_dot_string_number;
-//             starting_network_id = arr[3]
-//             if (parseInt(starting_network_id.substring(10)) > 255) {
-//                 ans[i] = 0
-//                 break
-//             }
-//         }
-//         else {
-//             let last_dot_string_number  = parseInt(starting_network_id.substring(10))
-//             last_dot_string_number += 1
-//             if (last_dot_string_number > 255 || last_dot_string_number + ans[0][2] + 1 > 255)
-//                 break
-//             arr[0] = starting_network_id.substring(0,9) + "." + last_dot_string_number;
-//             arr[1] = table.Subnet_mask[index]
-//             arr[2] = parseInt(table.Number_of_hosts[index]) - 2
-//             arr[3] = starting_network_id.substring(0,9) + "." 
-//             let x = parseInt(arr[0].substring(10)) + arr[2] + 1
-//             arr[3] += x
-//             starting_network_id = arr[3]
-//             if (parseInt(starting_network_id.substring(10)) > 255) {
-//                 ans[i] = null
-//                 break
-//             }
-//         }
-//         ans[i] = arr 
-//     }
-//     return ans
-// }
 
 function give_number_of_hosts(binary_string) {
     let hosts = 0,zeroes = 0;
