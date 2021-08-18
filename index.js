@@ -69,6 +69,24 @@ function dec_to_bin(decimal) {
     return ans
 }
 
+function input_check_method(CIDR_range) {
+    let dots_count = CIDR_range.split('.').length - 1
+    let slash_count = CIDR_range.split('/').length - 1
+    if (dots_count === 3 && slash_count === 1) {
+        let dots_array = []
+        for (let i=0;i<CIDR_range.length;i++) {
+            if (CIDR_range.charAt(i) === '.')
+                dots_array.push(i)
+        }
+        for (let i=0;i<dots_array.length-1;i++) {
+            if (dots_array[i+1] - dots_array[i] < 2)
+                return false
+        }
+        return true
+    }
+    return false
+}
+
 function give_subnet_mask(CIDR_range) {
     const slash = CIDR_range.indexOf('/')
     let cidr = CIDR_range.substring(slash+1)
@@ -214,13 +232,20 @@ function give_range(network_id,broadcast_id) {
 
 app.post('/', (req,res) => {
     let CIDR_range = req.body.CIDR_range
-    let subnet_mask = give_subnet_mask(CIDR_range)
-    let network_id_of_CIDR = give_network_id(CIDR_range,subnet_mask[0])
-    //let subnets_table = divide_in_subnets(CIDR_range,number_of_subnets)
-    let broadcast_id = give_broadcast_id(CIDR_range,subnet_mask[0])
-    let Number_of_hosts = give_number_of_hosts(subnet_mask[1])
-    let range = give_range(network_id_of_CIDR,broadcast_id)
-    res.render('output', {CIDR_range,subnet_mask,Number_of_hosts,network_id_of_CIDR,broadcast_id,range})
+    let input_check_var = true
+    if (!input_check_method(CIDR_range)) {
+        input_check_var = false
+        res.render('output', {input_check_var})
+    }
+    else {
+        let subnet_mask = give_subnet_mask(CIDR_range)
+        let network_id_of_CIDR = give_network_id(CIDR_range,subnet_mask[0])
+        //let subnets_table = divide_in_subnets(CIDR_range,number_of_subnets)
+        let broadcast_id = give_broadcast_id(CIDR_range,subnet_mask[0])
+        let Number_of_hosts = give_number_of_hosts(subnet_mask[1])
+        let range = give_range(network_id_of_CIDR,broadcast_id)
+        res.render('output', {input_check_var,CIDR_range,subnet_mask,Number_of_hosts,network_id_of_CIDR,broadcast_id,range})
+    }
 })
 
 
